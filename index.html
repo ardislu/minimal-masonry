@@ -21,6 +21,30 @@
     header {
       display: flex;
       justify-content: center;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .info-button {
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      padding: 0;
+      width: 24px;
+      height: 24px;
+      transition: background-color 500ms;
+    }
+
+    .info-button:hover,
+    .info-button:focus {
+      cursor: pointer;
+      background: hsl(58deg 80% 70%);
+      transition: background-color 150ms;
+    }
+
+    dialog {
+      background: hsl(216deg 20% 90%);
+      border-radius: 4px;
     }
 
     main {
@@ -57,11 +81,31 @@
 <body>
   <header>
     <h1>minimal-masonry</h1>
+    <button class="info-button">
+      <svg role="img" aria-labelledby="info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <title id="info">Open info dialog</title>
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+    </button>
   </header>
+
+  <dialog>
+    <h1>What is this?</h1>
+    <p>This website is a minimal reference implementation of the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Masonry_Layout">masonry layout</a>.</p>
+    <p><a href="https://github.com/ardislu/minimal-masonry">Click here</a> to view the source code on GitHub.</p>
+    <form method="dialog">
+      <button>OK</button>
+    </form>
+  </dialog>
 
   <main></main>
 
   <script>
+    const infoDialog = document.querySelector('dialog');
+    document.querySelector('.info-button').addEventListener('click', e => infoDialog.showModal());
+
     const main = document.querySelector('main');
     main.insertAdjacentHTML('beforeend', '<div><h1></h1></div>'.repeat(20));
 
