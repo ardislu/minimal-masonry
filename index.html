@@ -47,6 +47,52 @@
       border-radius: 4px;
     }
 
+    dialog h1 {
+      margin: 0;
+    }
+
+    dialog a {
+      color: hsl(130deg 100% 20%);
+      font-weight: 700;
+      text-decoration: none;
+      position: relative;
+    }
+
+    dialog a::after {
+      content: "";
+      position: absolute;
+      left: -2px;
+      top: -2px;
+      inline-size: calc(100% + 4px);
+      block-size: calc(100% + 4px);
+      border-radius: 4px;
+      background: hsl(130deg 100% 20% / 15%);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 400ms;
+    }
+
+    dialog a:hover::after,
+    dialog a:focus::after {
+      transform: scaleX(1);
+      transform-origin: left;
+      transition: transform 150ms;
+    }
+
+    dialog button {
+      font-weight: 700;
+      padding: 4px 8px;
+      border: 1px solid hsl(130deg 100% 20% / 25%);
+      border-radius: 4px;
+      background: hsl(130deg 100% 20% / 15%);
+    }
+
+    dialog button:hover,
+    dialog button:focus {
+      cursor: pointer;
+      box-shadow: 0 1px 1px hsl(275deg 10% 10% / 40%), 0 2px 0 0 hsl(275deg 100% 97% / 70%) inset;
+    }
+
     main {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
