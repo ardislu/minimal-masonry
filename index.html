@@ -160,9 +160,8 @@
     const main = document.querySelector('main');
     main.insertAdjacentHTML('beforeend', '<div><h1></h1></div>'.repeat(20));
 
-    let rng = new Uint16Array(40); // 2 values used per object = 20 total objects
-    window.crypto.getRandomValues(rng);
-    rng = [...rng]; // Need to spread to a non-typed array to use .pop()
+    // Need to spread to a non-typed array to use .pop()
+    const rng = [...crypto.getRandomValues(new Uint16Array(40))]; // 2 values used per object = 20 total objects
 
     // All length units are px
     const gridRowHeight = 8;
