@@ -107,6 +107,7 @@
     }
 
     div {
+      box-sizing: border-box;
       display: grid;
       place-items: center;
       border: 2px solid var(--text-color);
@@ -169,7 +170,7 @@
     const maximumDivHeight = window.innerHeight / 4;
     for (const div of main.children) {
       // Random height between 1/12 the viewport and 1/4 the viewport
-      const height = rng.pop() % (maximumDivHeight - minimumDivHeight) + minimumDivHeight;
+      const height = Math.ceil((rng.pop() % (maximumDivHeight - minimumDivHeight) + minimumDivHeight) / gridRowHeight) * gridRowHeight;
       const color = `hsl(${rng.pop() % 360}deg 40% 60%)`;
 
       div.style.setProperty('height', `${height}px`);
@@ -177,7 +178,7 @@
 
       // This is where the masonry layout is implemented. Since grid-template-rows is not set on <main>,
       // both row height and row count are implied by the children.
-      div.style.setProperty('grid-row-end', `span ${Math.ceil(height / gridRowHeight)}`);
+      div.style.setProperty('grid-row-end', `span ${height / gridRowHeight}`);
     }
   </script>
 </body>
